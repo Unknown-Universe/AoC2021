@@ -145,5 +145,3 @@ function part2(input) {
 }
 
 console.log(part2(inputArr));
-
-//splitLines = str => str.split(/\r?\n/)
