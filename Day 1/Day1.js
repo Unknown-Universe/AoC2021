@@ -91,43 +91,30 @@ let input = `199
 269
 260
 263`;
-
 let inputArr = input.split(/\n/);
-
 for (let i = 0; i<inputArr.length; i++) {
     let num = inputArr[i];
     num = Number(num);
     inputArr[i] = num;
 }
-
-
 function part1(input) {
     let lastDepth = input[0];
     let increases = 0;
-
     for (let i = 1; i<input.length; i++) {
         let currentDepth = input[i];
-
-        if (currentDepth > lastDepth) {
-            increases += 1;
-        }
+        if (currentDepth > lastDepth) { increases += 1; }
         lastDepth = currentDepth;
     }
     return increases;
 }
-
-// console.log(part1(inputArr))
-
 function part2(input) {
     let increased = 0;
     let lastWindowSum;
     let loop = true;
-
     for (let i = 0; i<input.length; i++) {
         if (!loop){break;}
         let window = [input[i], input[i+1], input[i+2]];
         let windowSum = 0;
-
         for (let a = 0; a<window.length; a++) {
             let num = window[a];
             if (isNaN(num)) {
@@ -140,10 +127,23 @@ function part2(input) {
             increased += 1;
         }
         lastWindowSum = windowSum;
-    }
-    return increased;
-}
-
+    } return increased; }
 console.log(part2(inputArr));
 
-//splitLines = str => str.split(/\r?\n/)
+
+
+
+
+
+
+function spinWords(string) {
+    let splitString = string.split("");
+    let newString = ""
+    for (let i = splitString.length-1; i >= 0; i--) {
+        newString += splitString[i]
+    }
+    return newString
+}
+
+
+console.log(spinWords("Test"))
