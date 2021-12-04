@@ -1,4 +1,3 @@
-
 /*--- Day 2: Dive! ---
 Now, you need to figure out how to pilot this thing.
 
@@ -54,70 +53,75 @@ After following these new instructions, you would have a horizontal position of 
 Using this new interpretation of the commands, calculate the horizontal position and depth you would have after following the planned course. What do you get if you multiply your final horizontal position by your final depth?
 */
 
-
 let input = `forward 5
 down 5
 forward 8
 up 3
 down 8
-forward 2`
+forward 2`;
 
-let splitInput = input.split("\n")
-
+let splitInput = input.split("\n");
 
 function part1() {
+    let horizontal = 0;
+    let depth = 0;
 
-let horizontal = 0
-let depth = 0
-
-for (command of splitInput) {
-    let seperateCommand = command.split(" ")
-    
-    let direction = seperateCommand[0]
-
-    let distance = seperateCommand[1]
-
-    switch (direction) {
-        case "down": depth += +distance; break
-        case "up": depth -= +distance; break 
-        case "forward": horizontal += +distance; break
-        default: console.log("Unknown Command");
-    }
-}
-
-console.log(`Part 1: ${horizontal*depth}`)
-}
-
-
-function part2() {
-
-    let horizontal = 0
-    let depth = 0
-    let aim = 0
-    
-    
     for (command of splitInput) {
-        let seperateCommand = command.split(" ")
-        
-        let direction = seperateCommand[0]
-    
-        let distance = seperateCommand[1]
-    
-        switch (direction) {
-            case "down": aim += +distance; break
-            case "up": aim -= +distance; break 
-            case "forward":
-                horizontal += +distance
-                depth += +distance*aim
-                break
+        let seperateCommand = command.split(" ");
 
-            default: console.log("Unknown Command");
+        let direction = seperateCommand[0];
+
+        let distance = seperateCommand[1];
+
+        switch (direction) {
+            case "down":
+                depth += +distance;
+                break;
+            case "up":
+                depth -= +distance;
+                break;
+            case "forward":
+                horizontal += +distance;
+                break;
+            default:
+                console.log("Unknown Command");
         }
     }
-    
-    console.log(`Part 2: ${horizontal*depth}`)
+
+    console.log(`Part 1: ${horizontal * depth}`);
+}
+
+function part2() {
+    let horizontal = 0;
+    let depth = 0;
+    let aim = 0;
+
+    for (command of splitInput) {
+        let seperateCommand = command.split(" ");
+
+        let direction = seperateCommand[0];
+
+        let distance = seperateCommand[1];
+
+        switch (direction) {
+            case "down":
+                aim += +distance;
+                break;
+            case "up":
+                aim -= +distance;
+                break;
+            case "forward":
+                horizontal += +distance;
+                depth += +distance * aim;
+                break;
+
+            default:
+                console.log("Unknown Command");
+        }
     }
 
+    console.log(`Part 2: ${horizontal * depth}`);
+}
 
-    part1()
-    part2()
+part1();
+part2();

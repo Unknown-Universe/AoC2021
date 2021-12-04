@@ -1,4 +1,3 @@
-
 /*--- Day 1: Sonar Sweep ---
 You're minding your own business on a ship at sea when the overboard alarm goes off! You rush to see if you can help. Apparently, one of the Elves tripped and accidentally sent the sleigh keys flying into the ocean!
 
@@ -80,7 +79,6 @@ In this example, there are 5 sums that are larger than the previous sum.
 
 Consider sums of a three-measurement sliding window. How many sums are larger than the previous sum?*/
 
-
 let input = `199
 200
 208
@@ -91,8 +89,9 @@ let input = `199
 269
 260
 263`;
-let inputArr = input.split(/\n/);
-for (let i = 0; i<inputArr.length; i++) {
+
+let inputArr = input.split(`\n`);
+for (let i = 0; i < inputArr.length; i++) {
     let num = inputArr[i];
     num = Number(num);
     inputArr[i] = num;
@@ -100,9 +99,11 @@ for (let i = 0; i<inputArr.length; i++) {
 function part1(input) {
     let lastDepth = input[0];
     let increases = 0;
-    for (let i = 1; i<input.length; i++) {
+    for (let i = 1; i < input.length; i++) {
         let currentDepth = input[i];
-        if (currentDepth > lastDepth) { increases += 1; }
+        if (currentDepth > lastDepth) {
+            increases += 1;
+        }
         lastDepth = currentDepth;
     }
     return increases;
@@ -111,21 +112,25 @@ function part2(input) {
     let increased = 0;
     let lastWindowSum;
     let loop = true;
-    for (let i = 0; i<input.length; i++) {
-        if (!loop){break;}
-        let window = [input[i], input[i+1], input[i+2]];
+    for (let i = 0; i < input.length; i++) {
+        if (!loop) {
+            break;
+        }
+        let window = [input[i], input[i + 1], input[i + 2]];
         let windowSum = 0;
-        for (let a = 0; a<window.length; a++) {
+        for (let a = 0; a < window.length; a++) {
             let num = window[a];
             if (isNaN(num)) {
                 loop = false;
                 break;
-            } 
+            }
             windowSum += num;
         }
-        if (windowSum>lastWindowSum) {
+        if (windowSum > lastWindowSum) {
             increased += 1;
         }
         lastWindowSum = windowSum;
-    } return increased; }
+    }
+    return increased;
+}
 console.log(part2(inputArr));
